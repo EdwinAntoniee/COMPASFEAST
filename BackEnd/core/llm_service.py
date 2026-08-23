@@ -3,11 +3,14 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 from typing import Any
 
-import ollama
+from ollama import Client
 
+OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434")
+client = Client(host=OLLAMA_HOST)
 OLLAMA_MODEL = "qwen-model"
 
 SYSTEM_INSTRUCTION = (
@@ -87,7 +90,7 @@ def generate_repair_guidance(
             "Output strictly valid JSON as an object with exactly one key: "
             "recommended_actions, whose value is a list of strings."
         )
-        response = ollama.chat(
+        response = client.chat(
             model=OLLAMA_MODEL,
             messages=[
                 {"role": "system", "content": SYSTEM_INSTRUCTION},
@@ -103,7 +106,7 @@ def generate_repair_guidance(
 def chat_with_bot(chat_history: list[dict[str, str]]) -> str:
     """Generate a plain-text reply for a list of chat messages."""
     try:
-        response = ollama.chat(model=OLLAMA_MODEL, messages=chat_history)
+        response = client.chat(model=OLLAMA_MODEL, messages=chat_history)
         return response["message"]["content"].strip()
     except Exception:
         return "Sorry, I could not connect to the local AI service."

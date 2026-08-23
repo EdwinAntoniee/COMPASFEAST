@@ -1,0 +1,45 @@
+# Python environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+venv312/
+env/
+ENV/
+
+# Python tooling and test caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environment variables and local configuration
+.env
+.env.local
+.env.*.local
+
+# Heavy machine-learning model files
+*.gguf
+*.safetensors
+*.bin
+*.h5
+
+# Downloaded local LLM model directory
+qwen-sop-model_gguf/
+/BackEnd/models/qwen-sop-model_gguf/
+
+# IDE settings
+.vscode/
+.idea/
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Build and distribution artifacts
+build/
+dist/
+*.egg-info/

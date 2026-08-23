@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartMantAIn — Machine Diagnostic Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="frame">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-mark">SM</div>
+      <div class="brand-text">
+        <h1>SmartMantAIn</h1>
+        <p>Diagnostic panel &amp; repair recommendations — conveyor &amp; electric motors</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <!-- LEFT: sensor input -->
+    <div class="panel">
+      <p class="panel-label">Sensor Input</p>
+
+      <div class="field">
+        <label>Machine ID</label>
+        <input type="text" id="machineId" value="M14860" />
+      </div>
+
+      <div class="field">
+        <label for="machineType">Product type</label>
+        <div class="select-wrap">
+          <select id="machineType">
+            <option value="L">L — Low</option>
+            <option value="M" selected>M — Medium</option>
+            <option value="H">H — High</option>
+          </select>
+          <span class="select-arrow" aria-hidden="true"></span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Air temperature <span class="unit">K</span></label>
+        <div class="slider-row">
+          <input type="range" id="air_temperature_k" min="290" max="310" step="0.1" value="298.1" />
+          <input type="number" id="air_temperature_k_num" class="num-input" min="290" max="310" step="0.1" value="298.1" />
+        </div>
+        <div id="air_temperature_k_warn" class="field-warning">Is the input correct? Value is outside normal range.</div>
+      </div>
+
+      <div class="field">
+        <label>Process temperature <span class="unit">K</span></label>
+        <div class="slider-row">
+          <input type="range" id="process_temperature_k" min="295" max="320" step="0.1" value="308.6" />
+          <input type="number" id="process_temperature_k_num" class="num-input" min="295" max="320" step="0.1" value="308.6" />
+        </div>
+        <div id="process_temperature_k_warn" class="field-warning">Is the input correct? Value is outside normal range.</div>
+      </div>
+
+      <div class="field">
+        <label>Rotational speed <span class="unit">RPM</span></label>
+        <div class="slider-row">
+          <input type="range" id="rotational_speed_rpm" min="1000" max="2900" step="1" value="1551" />
+          <input type="number" id="rotational_speed_rpm_num" class="num-input" min="1000" max="2900" step="1" value="1551" />
+        </div>
+        <div id="rotational_speed_rpm_warn" class="field-warning">Is the input correct? Value is outside normal range.</div>
+      </div>
+
+      <div class="field">
+        <label>Torque <span class="unit">Nm</span></label>
+        <div class="slider-row">
+          <input type="range" id="torque_nm" min="3" max="77" step="0.1" value="65.2" />
+          <input type="number" id="torque_nm_num" class="num-input" min="3" max="77" step="0.1" value="65.2" />
+        </div>
+        <div id="torque_nm_warn" class="field-warning">Is the input correct? Value is outside normal range.</div>
+      </div>
+
+      <div class="field">
+        <label>Tool wear <span class="unit">min</span></label>
+        <div class="slider-row">
+          <input type="range" id="tool_wear_min" min="0" max="253" step="1" value="210" />
+          <input type="number" id="tool_wear_min_num" class="num-input" min="0" max="253" step="1" value="210" />
+        </div>
+        <div id="tool_wear_min_warn" class="field-warning">Is the input correct? Value is outside normal range.</div>
+      </div>
+
+      <div class="presets">
+        <button class="preset-btn" data-preset="normal">Normal condition</button>
+        <button class="preset-btn" data-preset="twf">Tool wear simulation</button>
+        <button class="preset-btn" data-preset="hdf">Heat failure simulation</button>
+        <button class="preset-btn" data-preset="pwf">Power failure simulation</button>
+        <button class="preset-btn" data-preset="osf">Overstrain simulation</button>
+      </div>
+
+      <button class="run-btn" id="runBtn">Run diagnosis</button>
+
+    </div>
+
+    <!-- RIGHT: result -->
+    <div class="panel" id="resultPanel">
+      <p class="panel-label">Diagnosis Result</p>
+      <div class="result-empty" id="resultEmpty">
+        <div class="ring">?</div>
+        <p>Adjust the sensor values in the left panel and click "Run diagnosis" to see machine status and repair recommendations.</p>
+      </div>
+      <div id="resultContent" style="display:none;"></div>
+      <button type="button" id="chatToggleBtn" class="chat-toggle" aria-label="Open technician chat" title="Open technician chat" style="display:none;">&#128172;</button>
+    </div>
+
+  </div>
+</div>
+
+<aside id="chatInterface" class="chat-drawer" aria-hidden="true">
+  <div class="chat-drawer-header">
+    <p class="section-title">Technician chat</p>
+    <button type="button" id="closeChatBtn" class="chat-close" aria-label="Close technician chat" title="Close technician chat">×</button>
+  </div>
+  <div id="chatHistory" class="chat-history" aria-live="polite"></div>
+  <div class="chat-compose">
+    <input type="text" id="chatInput" placeholder="Ask about this diagnosis..." autocomplete="off" />
+    <button type="button" id="sendChatBtn">Send</button>
+  </div>
+</aside>
+
+<script src="app.js"></script>
+</body>
+</html>

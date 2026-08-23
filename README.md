@@ -1,6 +1,6 @@
-# MechAI
+# SmartMantAIn
 
-MechAI combines Predictive AI, using Scikit-Learn and LightGBM, with Generative AI, using a local large language model served by Ollama. It detects industrial machine failure modes from sensor readings and provides repair guidance through a FastAPI web application.
+SmartMantAIn combines Predictive AI, using Scikit-Learn and LightGBM, with Generative AI, using a local large language model served by Ollama. It detects industrial machine failure modes from sensor readings and provides repair guidance through a FastAPI web application.
 
 ## Important Model Setup
 

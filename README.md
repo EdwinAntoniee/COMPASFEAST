@@ -6,7 +6,7 @@ MechAI combines Predictive AI, using Scikit-Learn and LightGBM, with Generative 
 
 The LLM model is too large for GitHub. Download the `.gguf` model and its `Modelfile` from:
 
-https://drive.google.com/file/d/1ZinLBAqy1pcEpZTD9DsPCUWeKztzehLC/view
+https://drive.google.com/file/d/1LzGVKWS1hSP6TNHwD9AYldaVgjhWCjxp/view?usp=sharing
 
 Place both downloaded files exactly inside:
 

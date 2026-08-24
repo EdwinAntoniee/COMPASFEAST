@@ -2,6 +2,17 @@
 
 Maintain combines Predictive AI, using Scikit-Learn and LightGBM, with Generative AI, using a local large language model served by Ollama. It detects industrial machine failure modes from sensor readings and provides repair guidance through a FastAPI web application.
 
+## Prerequisites
+
+Install the following on the host machine:
+
+- Docker
+- Docker Compose
+- Ollama
+
+The application expects Ollama on port `11434`. Docker Compose connects to the host Ollama instance through `host.docker.internal`.
+
+
 ## Important Model Setup
 
 The LLM model is too large for GitHub. Download the `.gguf` model and its `Modelfile` from:
@@ -25,16 +36,6 @@ Verify that `qwen-model` is available:
 ```bash
 ollama list
 ```
-
-## Prerequisites
-
-Install the following on the host machine:
-
-- Docker
-- Docker Compose
-- Ollama
-
-The application expects Ollama on port `11434`. Docker Compose connects to the host Ollama instance through `host.docker.internal`.
 
 ## How to Run
 

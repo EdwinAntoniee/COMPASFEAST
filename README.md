@@ -1,4 +1,4 @@
-# SmartMantAIn - AI & Machine Learning Pipeline
+# Mantain - AI & Machine Learning Pipeline
 
 👉 **To view and run the fully integrated Full-Stack web application (Frontend, Backend, and Docker), please switch to the [`result` branch](https://github.com/EdwinAntoniee/COMPASFEAST/tree/result).**
 
